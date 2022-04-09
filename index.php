@@ -7,14 +7,13 @@ function route(Request $request): Response {
     try {
         if ($request->method !== 'GET') return new MethodNotAllowed();
         if (!authenticate($request)) return new Unauthorized();
-        if (str_ends_with($request->url, '/'))
-            $cmd = "dconf dump {$request->url}";
-        else
-            $cmd = "dconf read {$request->url}";
+        $x = str_ends_with($request->url, '/') ? 'dump' : 'read';
+        $x = shell_exec("dconf {$x} {$request->url}");
+        if (!$x) $x = '';
         return new Response(
             200,
             ['Content-Type' => 'text/plain'],
-            shell_exec($cmd)
+            $x,
         );
     } catch (\Throwable $e) { return handle_error($e); }
 }

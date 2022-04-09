@@ -35,3 +35,20 @@ There are three things to configure: the dconf database to read, the port, and t
 - database: the dconf database of the user the process is running as will be used. All the magic is handled by `dconf`. You can find the dconf database at `~/.config/dconf/user`.
 - port: configured in the dconf entry `/org/vas/remote-dconf/port`. If not found, defaults to `8000`.
 - token: configured in the dconf entry `/org/vas/remote-dconf/token`. If not found, defaults to `test`.
+
+# Architecture
+
+Code is kept intentionally minimal and avoids external dependencies. `remote-dconf` is written in barebones PHP; composer is not used.
+
+You will find some utility classes in `lib`:
+
+- `request.php` provides a nicer API to PHP request data, which is normally stored in globals.
+- `response.php` provides a nicer API for serving responses. Responses serve themselves through the `serve()` method.
+
+`index.php` performs the business logic, which should be self-explanatory.
+
+There is no PHP dconf library. Instead, we use the `dconf` binary and pipe its output to our response. To reduce unnecessary forking, our authentication token is loaded into an environment variable.
+
+We use the PHP built-in server, which doesn't have the best performance, but it can manage a few hundred requests per second. For the purposes of this project, this should suffice.
+
+If you want encryption, you should use a reverse proxy.
