@@ -1,0 +1,3 @@
+#!/bin/sh
+name='basic-file-server'
+systemctl stop $name || true

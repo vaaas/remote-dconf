@@ -1,0 +1,14 @@
+[Unit]
+Description=remote-dconf
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Restart=always
+User=root
+Group=root
+WorkingDirectory=/opt/remote-dconf
+ExecStart=bash /opt/remote-dconf/start.sh production
+
+[Install]
+WantedBy=default.target
