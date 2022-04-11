@@ -1,10 +1,10 @@
 #!/bin/bash
-PORT=$(dconf read /org/vas/remote-dconf/port)
+export PORT=$(dconf read /org/vas/remote-dconf/port)
 if test -z "$PORT"
 then export PORT='8000'
 fi
 
-TOKEN=$(dconf read /org/vas/remote-dconf/token)
+export TOKEN=$(dconf read /org/vas/remote-dconf/token) | sed s/\'//g)
 if test -z "$TOKEN"
 then export TOKEN='test'
 fi
