@@ -1,5 +1,5 @@
 #!/bin/sh
-name='basic-file-server'
+name='remote-dconf'
 chown -R root:root /opt/$name
 systemctl daemon-reload
 systemctl enable $name || true
