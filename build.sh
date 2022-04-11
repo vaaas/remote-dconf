@@ -1,6 +1,6 @@
 #!/bin/sh
 
-version='1.0.3'
+version='1.0.4'
 
 # put files in proper directory for DEB file generation
 basename='remote-dconf'
