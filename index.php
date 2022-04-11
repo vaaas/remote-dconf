@@ -7,7 +7,7 @@ function route(Request $request): Response {
     try {
         if ($request->method !== 'GET') return new MethodNotAllowed();
         if (!authenticate($request)) return new Unauthorized();
-        $x = str_ends_with($request->url, '/') ? 'dump' : 'read';
+        $x = $request->url[strlen($request->len) - 1] === '/' ? 'dump' : 'read';
         $x = shell_exec("dconf {$x} {$request->url}");
         if (!$x) $x = '';
         return new Response(
