@@ -1,3 +1,3 @@
 #!/bin/sh
-name='basic-file-server'
+name='remote-dconf'
 systemctl stop $name || true
