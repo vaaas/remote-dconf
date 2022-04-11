@@ -3,4 +3,4 @@ Version: VERSION
 Architecture: amd64
 Maintainer: Vasileios Pasialiokis <pasivasi@outlook.com>
 Description: Access a remote server's dconf
-Depends: php (>= 8.0.0), bash, dconf-cli
+Depends: php-cli, bash, dconf-cli
