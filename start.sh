@@ -1,5 +1,5 @@
 #!/bin/bash
-export PORT=$(dconf read /org/vas/remote-dconf/host)
+export PORT=$(dconf read /org/vas/remote-dconf/host | sed s/\'//g)
 if test -z "$HOST"
 then export HOST='0.0.0.0'
 fi
