@@ -4,7 +4,7 @@ if test -z "$PORT"
 then export PORT='8000'
 fi
 
-export TOKEN=$(dconf read /org/vas/remote-dconf/token) | sed s/\'//g)
+export TOKEN=$(dconf read /org/vas/remote-dconf/token | sed s/\'//g)
 if test -z "$TOKEN"
 then export TOKEN='test'
 fi
