@@ -8,8 +8,7 @@ Restart=always
 User=root
 Group=root
 WorkingDirectory=/opt/remote-dconf
-Environment="XDG_RUNTIME_DIR=/run/user/0"
-ExecStart=bash /opt/remote-dconf/start.sh production
+ExecStart=dbus-run-session /opt/remote-dconf/start.sh production
 
 [Install]
 WantedBy=default.target
